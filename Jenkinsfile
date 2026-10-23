@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Java Application') {
+        stage('Check Deployment Server') {
             steps {
                 sshagent(credentials: ['java-deploy-ssh1']) {
                     sh '''
