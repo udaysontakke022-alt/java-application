@@ -14,7 +14,7 @@ pipeline {
         }
 
         stage('Deploy Java Application') {
-            steps {sshagent(credentials: ['java-deploy-ssh']) {
+            steps {sshagent(credentials: ['java-deploy-ssh1']) {
                     sh '''
                         set -e
 
