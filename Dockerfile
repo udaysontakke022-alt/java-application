@@ -1,15 +1,17 @@
-# Stage 1: Build Java application
-FROM maven:3.9-eclipse-temurin-17 AS build
+
+# Stage 1: Build Java application using Java 21
+FROM maven:3.9-eclipse-temurin-21 AS build
 
 WORKDIR /app
 
 COPY pom.xml .
-COPY src ./src
+RUN mvn -B dependency:go-offline
 
+COPY src ./src
 RUN mvn -B -DskipTests package
 
-# Stage 2: Run Java application
-FROM eclipse-temurin:17-jre
+# Stage 2: Run Java application using Java 21
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
